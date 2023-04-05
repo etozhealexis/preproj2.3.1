@@ -1,0 +1,34 @@
+.row{
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: flex-start;
+
+    border: 5px solid black;
+
+    padding: 20px;
+}
+
+#col_user{
+    width: 150px;
+    border: 2px solid black;
+    background-color: green;
+    height: 150px;
+    border-right: 0px;
+}
+
+#col_delete{
+    width: 100%;
+    border: 2px solid black;
+    background-color: yellow;
+    height: 300px;
+}
+#col_edit{
+    width: 150px;
+    border: 2px solid black;
+    border-left: 0px;
+    background-color: green;
+    height: 150px;
+}

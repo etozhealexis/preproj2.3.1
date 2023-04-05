@@ -13,4 +13,6 @@ public interface UserDao {
     void saveUser(User user);
 
     void update(int id, User user);
+
+    void delete(int id);
 }

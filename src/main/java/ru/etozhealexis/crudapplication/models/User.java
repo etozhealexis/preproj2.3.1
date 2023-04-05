@@ -1,6 +1,10 @@
 package ru.etozhealexis.crudapplication.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @NamedQueries({
         @NamedQuery(
@@ -20,12 +24,16 @@ public class User {
     private long id;
 
     @Column()
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 40, message = "Name should be between 2 and 40 characters")
     private String name;
 
     @Column()
+    @Min(value = 0, message = "Age should be at least 0")
     private short age;
 
     @Column()
+    @Email
     private String email;
 
     public User() {

@@ -1,12 +1,64 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <title>List of cars:</title>
+  <title>List of users:</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<div th:each="user : ${users}">
-  <div th:text="${user.name + ', ' + user.age + ', ' + user.email}">user</div>
+
+<a href ="/users/new">Add new data</a>
+
+<br/>
+<hr/>
+
+<div>
+  <div style="float: left; width: 100px; height: 100px;" th:text="Name">
+    name
+  </div>
+  <div style="float: left; width: 50px; height: 100px;" th:text="Age">
+    age
+  </div>
+  <div style="float: left; width: 100px; height: 100px;" th:text="Email">
+    email
+  </div>
+  <div style="float: left; width: 50px; height: 100px;" th:text="Update">
+    update
+  </div>
+  <div style="float: left; width: 100px; height: 100px;" th:text="Delete">
+    delete
+  </div>
+</div>
+
+<br/>
+
+<div style="overflow: hidden;">
+  <div class="row" th:each="user : ${users}">
+    <div style="float: left; width: 100px; height: 100px;" th:text="${user.name}">
+      user
+    </div>
+    <div style="float: left; width: 50px; height: 100px;" th:text="${user.age}">
+      user
+    </div>
+    <div style="float: left; width: 100px; height: 100px;" th:text="${user.email}">
+      user
+    </div>
+
+    <div>
+      <form style="float: left; width: 75px; height: 100px;" th:method="GET"
+            th:action="@{/users/edit/{id}(id=${user.id})}">
+        <input type="submit" style="background: green; color: aliceblue" value="Edit"/>
+      </form>
+    </div>
+
+    <div style="float: left; width: 75px; height: 100px;">
+      <form th:method="DELETE" th:action="@{/users/{id}(id=${user.id})}">
+        <input type="submit" style="background: red; color: aliceblue" value="Delete"/>
+      </form>
+    </div>
+
+    <br/>
+  </div>
 </div>
 </body>
 </html>

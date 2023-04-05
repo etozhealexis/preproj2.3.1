@@ -1,8 +1,10 @@
 package ru.etozhealexis.crudapplication.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.etozhealexis.crudapplication.models.User;
 import ru.etozhealexis.crudapplication.service.UserService;
@@ -33,13 +35,18 @@ public class UserController {
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute("user") User user) {
+    public String createUser(@ModelAttribute("user") @Valid User user,
+                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "newUser";
+        }
+
         userService.saveUser(user);
 
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
 
@@ -47,9 +54,20 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user,
+    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
                            @PathVariable("id") int id) {
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
+
         userService.update(id, user);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        userService.delete(id);
+
         return "redirect:/users";
     }
 }

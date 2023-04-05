@@ -42,4 +42,11 @@ public class UserDaoImp implements UserDao {
         userToUpdate.setEmail(updatedUser.getEmail());
         entityManager.merge(userToUpdate);
     }
+
+    @Transactional
+    @Override
+    public void delete(int id) {
+        User user = getUser(id);
+        entityManager.remove(user);
+    }
 }
