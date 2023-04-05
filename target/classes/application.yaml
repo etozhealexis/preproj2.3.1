@@ -9,3 +9,7 @@ spring:
     show-sql: true
     database: postgresql
     hibernate.ddl-auto: update
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true

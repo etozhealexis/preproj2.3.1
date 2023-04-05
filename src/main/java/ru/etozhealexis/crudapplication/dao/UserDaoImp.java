@@ -32,4 +32,14 @@ public class UserDaoImp implements UserDao {
     public void saveUser(User user) {
         entityManager.persist(user);
     }
+
+    @Transactional
+    @Override
+    public void update(int id, User updatedUser) {
+        User userToUpdate = getUser(id);
+        userToUpdate.setName(updatedUser.getName());
+        userToUpdate.setAge(updatedUser.getAge());
+        userToUpdate.setEmail(updatedUser.getEmail());
+        entityManager.merge(userToUpdate);
+    }
 }

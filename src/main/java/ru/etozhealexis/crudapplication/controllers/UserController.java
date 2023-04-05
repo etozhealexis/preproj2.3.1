@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.etozhealexis.crudapplication.models.User;
 import ru.etozhealexis.crudapplication.service.UserService;
 
-@Controller
+@Controller()
 @RequestMapping("users")
 public class UserController {
     @Autowired
@@ -36,6 +36,20 @@ public class UserController {
     public String createUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
 
+        return "redirect:/users";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", userService.getUser(id));
+
+        return "edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user,
+                           @PathVariable("id") int id) {
+        userService.update(id, user);
         return "redirect:/users";
     }
 }
