@@ -33,7 +33,7 @@ public class User {
     private short age;
 
     @Column()
-    @Email
+    @Email(message = "Email should be a valid email-address")
     private String email;
 
     public User() {
