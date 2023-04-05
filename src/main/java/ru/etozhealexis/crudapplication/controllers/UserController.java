@@ -31,14 +31,14 @@ public class UserController {
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
-        return "newUser";
+        return "create";
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute("user") @Valid User user,
+    public String create(@ModelAttribute("user") @Valid User user,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "newUser";
+            return "create";
         }
 
         userService.saveUser(user);
