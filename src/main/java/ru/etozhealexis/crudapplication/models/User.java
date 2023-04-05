@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 @NamedQueries({
         @NamedQuery(
                 name = "getUsers",
-                query = "SELECT u FROM User u"
+                query = "SELECT u FROM User u ORDER BY u.id"
         ),
         @NamedQuery(
                 name = "getUser",
