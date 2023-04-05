@@ -27,8 +27,7 @@
       <td th:text="${user.age}"/>
       <td th:text="${user.email}"/>
       <td>
-        <form th:method="GET"
-                th:action="@{/users/edit/{id}(id=${user.id})}">
+        <form th:method="GET" th:action="@{/users/edit/{id}(id=${user.id})}">
           <input type="submit" style="background: green; color: aliceblue" value="Edit"/>
         </form>
       </td>
