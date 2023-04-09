@@ -1,8 +1,10 @@
 package ru.etozhealexis.crudapplication.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import ru.etozhealexis.crudapplication.models.User;
 
@@ -10,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
@@ -21,7 +23,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(Long id) {
         return (User) entityManager.createNamedQuery("getUser")
                 .setParameter("id", id)
                 .getSingleResult();
@@ -35,18 +37,26 @@ public class UserDaoImp implements UserDao {
 
     @Transactional
     @Override
-    public void update(int id, User updatedUser) {
+    public void update(Long id, User updatedUser) {
         User userToUpdate = getUser(id);
         userToUpdate.setName(updatedUser.getName());
         userToUpdate.setAge(updatedUser.getAge());
         userToUpdate.setEmail(updatedUser.getEmail());
+        userToUpdate.setPassword(updatedUser.getPassword());
         entityManager.merge(userToUpdate);
     }
 
     @Transactional
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         User user = getUser(id);
         entityManager.remove(user);
+    }
+
+    @Override
+    public UserDetails getUserByEmail(String email) {
+        return (User) entityManager.createNamedQuery("getUserByEmail")
+                .setParameter("email", email)
+                .getSingleResult();
     }
 }

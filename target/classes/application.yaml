@@ -13,6 +13,3 @@ spring:
     hidden-method:
       filter:
         enabled: true
-  dao:
-    exceptiontranslation:
-      enabled: true
