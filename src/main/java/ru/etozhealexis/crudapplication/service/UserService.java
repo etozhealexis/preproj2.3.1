@@ -1,7 +1,7 @@
 package ru.etozhealexis.crudapplication.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.etozhealexis.crudapplication.models.User;
+import ru.etozhealexis.crudapplication.model.User;
 
 import java.util.List;
 

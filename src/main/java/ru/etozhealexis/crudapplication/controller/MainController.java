@@ -1,4 +1,4 @@
-package ru.etozhealexis.crudapplication.controllers;
+package ru.etozhealexis.crudapplication.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

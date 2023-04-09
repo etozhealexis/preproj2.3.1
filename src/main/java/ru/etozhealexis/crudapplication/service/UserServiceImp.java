@@ -3,13 +3,12 @@ package ru.etozhealexis.crudapplication.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.etozhealexis.crudapplication.dao.UserDao;
-import ru.etozhealexis.crudapplication.models.Role;
-import ru.etozhealexis.crudapplication.models.User;
+import ru.etozhealexis.crudapplication.model.Role;
+import ru.etozhealexis.crudapplication.model.User;
 
 import java.util.HashSet;
 import java.util.List;

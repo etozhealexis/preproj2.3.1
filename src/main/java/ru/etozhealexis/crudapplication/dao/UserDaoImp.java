@@ -3,10 +3,10 @@ package ru.etozhealexis.crudapplication.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
-import ru.etozhealexis.crudapplication.models.User;
+import ru.etozhealexis.crudapplication.model.User;
 
 import java.util.List;
 

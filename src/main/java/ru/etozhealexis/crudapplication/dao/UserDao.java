@@ -1,7 +1,7 @@
 package ru.etozhealexis.crudapplication.dao;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.etozhealexis.crudapplication.models.User;
+import ru.etozhealexis.crudapplication.model.User;
 
 import java.util.List;
 

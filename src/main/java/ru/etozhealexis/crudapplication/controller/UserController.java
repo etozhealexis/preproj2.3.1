@@ -1,4 +1,4 @@
-package ru.etozhealexis.crudapplication.controllers;
+package ru.etozhealexis.crudapplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

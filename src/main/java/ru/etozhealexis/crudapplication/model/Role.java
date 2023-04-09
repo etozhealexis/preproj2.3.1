@@ -1,4 +1,4 @@
-package ru.etozhealexis.crudapplication.models;
+package ru.etozhealexis.crudapplication.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
