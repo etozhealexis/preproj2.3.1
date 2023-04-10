@@ -19,6 +19,7 @@
       <th>Name</th>
       <th>Age</th>
       <th>Email</th>
+      <th>Roles</th>
       <th>Update</th>
       <th>Delete</th>
     </tr>
@@ -28,6 +29,7 @@
       <td th:text="${user.name}"/>
       <td th:text="${user.age}"/>
       <td th:text="${user.email}"/>
+      <td th:text="${user.roles}"/>
       <td>
         <form th:method="GET" th:action="@{/admin/edit/{id}(id=${user.id})}">
           <input type="submit" style="background: green; color: aliceblue" value="Edit"/>
