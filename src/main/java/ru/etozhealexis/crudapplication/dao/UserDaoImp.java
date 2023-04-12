@@ -43,6 +43,7 @@ public class UserDaoImp implements UserDao {
         userToUpdate.setAge(updatedUser.getAge());
         userToUpdate.setEmail(updatedUser.getEmail());
         userToUpdate.setPassword(updatedUser.getPassword());
+        userToUpdate.setRoles(updatedUser.getRoles());
         entityManager.merge(userToUpdate);
     }
 

@@ -38,7 +38,9 @@ public class UserServiceImp implements UserService {
     @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.addRole(new Role(1L, "ROLE_USER"));
+        Set<Role> roles = new HashSet<>();
+        roles.add(new Role(1L, "ROLE_USER"));
+        user.setRoles(roles);
         userDao.saveUser(user);
     }
 

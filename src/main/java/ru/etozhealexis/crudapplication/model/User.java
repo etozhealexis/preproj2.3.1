@@ -43,6 +43,7 @@ public class User implements UserDetails {
     private short age;
 
     @Column(unique = true)
+    @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be a valid email-address")
     private String email;
 

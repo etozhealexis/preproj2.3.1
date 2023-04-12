@@ -3,6 +3,7 @@ package ru.etozhealexis.crudapplication.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,8 +25,10 @@ public class AdminController {
     private RoleRepository roleRepository;
 
     @GetMapping
-    public String listUsers(Model model) {
+    public String listUsers(Model model, Authentication authentication) {
         model.addAttribute("users", userService.getUsers());
+        model.addAttribute("user", authentication.getPrincipal());
+        model.addAttribute("roles", authentication.getAuthorities());
 
         return "users";
     }
