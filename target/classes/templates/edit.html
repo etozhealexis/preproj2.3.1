@@ -19,13 +19,17 @@
     <input type="text" th:field="*{email}" id = "email"/>
     <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
     <br/>
-<!--    toDO: role_giver-->
-<!--    <label for="roles">Edit role: </label>-->
-<!--    <select name="roles" th:field="*{roles}" id="roles">-->
-<!--        <option value="ROLE_USER">User</option>-->
-<!--        <option value="ROLE_ADMIN">Admin</option>-->
-<!--    </select>-->
-    <div style="color: red" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">Email error</div>
+<!--    toDO: role_giver/updater-->
+    <label>Edit roles: </label>
+        <th:block th:each="role : ${roleList}">
+            <label>
+                <input type="checkbox"
+                       name="roles"
+                       th:field="*{roles}"
+                       th:value="${role.id}"
+                       th:text="${role.role}"/>
+            </label>
+        </th:block>
     <br/>
     <label for="password">Enter password: </label>
     <input type="password" th:field="*{password}" id = "password"/>

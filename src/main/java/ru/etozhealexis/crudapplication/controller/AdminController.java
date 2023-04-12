@@ -1,19 +1,27 @@
 package ru.etozhealexis.crudapplication.controller;
 
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.etozhealexis.crudapplication.model.Role;
 import ru.etozhealexis.crudapplication.model.User;
+import ru.etozhealexis.crudapplication.repository.RoleRepository;
 import ru.etozhealexis.crudapplication.service.UserService;
+
+import java.util.List;
 
 @Controller()
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping
     public String listUsers(Model model) {
@@ -48,7 +56,9 @@ public class AdminController {
 
     @GetMapping("edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
+        List<Role> roleList = roleRepository.findAll();
         model.addAttribute("user", userService.getUser(id));
+        model.addAttribute("roleList", roleList);
 
         return "edit";
     }

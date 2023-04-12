@@ -17,7 +17,6 @@ import java.util.Set;
 @Service
 public class UserServiceImp implements UserService {
     private final UserDao userDao;
-
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -39,9 +38,7 @@ public class UserServiceImp implements UserService {
     @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role(1L, "ROLE_USER"));
-        user.setRoles(roles);
+        user.addRole(new Role(1L, "ROLE_USER"));
         userDao.saveUser(user);
     }
 
