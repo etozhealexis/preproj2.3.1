@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<!-- toDO: delete edit page (add to admin with js)-->
+
 <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.id})}" th:object="${user}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id = "name"/>
