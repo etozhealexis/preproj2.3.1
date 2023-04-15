@@ -31,7 +31,6 @@ public class AdminRestController {
         return "users";
     }
 
-
     @PostMapping("/new")
     public void create(@RequestBody @Valid User user) {
         userService.saveUser(user);

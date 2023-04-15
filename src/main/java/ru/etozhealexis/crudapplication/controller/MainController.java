@@ -26,21 +26,22 @@ public class MainController {
     String login() {
         return "login";
     }
-//    @GetMapping("/signup")
-//    public String signUp(@ModelAttribute("user") User user) {
-//        return "signup";
-//    }
-//
-//    @PostMapping
-//    public String create(@ModelAttribute("user") @Valid User user,
-//                         BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "signup";
-//        }
-//
-//        userService.saveUser(user);
-//
-//        return "redirect:/login";
-//    }
+
+    @GetMapping("/signup")
+    public String signUp(@ModelAttribute("user") User user) {
+        return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String create(@ModelAttribute("user") @Valid User user,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "signup";
+        }
+
+        userService.saveUser(user);
+
+        return "redirect:/login";
+    }
 
 }
