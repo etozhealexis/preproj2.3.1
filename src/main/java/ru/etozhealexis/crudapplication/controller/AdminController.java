@@ -18,15 +18,15 @@ import java.util.List;
 @Controller()
 @RequestMapping("/admin")
 public class AdminController {
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private UserService userService;
 //
 //    @Autowired
 //    private RoleRepository roleRepository;
 //
     @GetMapping
     public String listUsers(Model model, Authentication authentication) {
-//        model.addAttribute("users", userService.getUsers());
+        model.addAttribute("users", userService.getUsers());
         model.addAttribute("user", authentication.getPrincipal());
         model.addAttribute("roles", authentication.getAuthorities());
 

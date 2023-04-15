@@ -24,30 +24,3 @@ function createUser() {
         }
     })
 }
-
-function deleteUser() {
-    let user = {}
-
-    $.ajax({
-        method: "GET",
-        url: "admin/delete/" + data.id,
-        success: function () {
-            window.location.replace("/admin");
-        }
-    })
-}
-
-function editUser() {
-    let user = {}
-
-    $.ajax({
-        method: "GET",
-        url: "admin/edit" + id,
-        contentType: "application/json",
-        success: function (data) {
-            document.getElementById().value = data.name;
-            document.getElementById().value = data.age;
-            document.getElementById().value = data.name;
-        }
-    })
-}
