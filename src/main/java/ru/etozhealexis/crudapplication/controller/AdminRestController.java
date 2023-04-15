@@ -24,13 +24,6 @@ public class AdminRestController {
         return userService.getUsers();
     }
 
-    @GetMapping("/{id}")
-    public String listUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("users", userService.getUser(id));
-
-        return "users";
-    }
-
     @PostMapping("/new")
     public void create(@RequestBody @Valid User user) {
         userService.saveUser(user);
