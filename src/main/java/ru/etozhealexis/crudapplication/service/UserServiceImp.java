@@ -46,9 +46,6 @@ public class UserServiceImp implements UserService {
 
     @Override
     public void update(Long id, User user) {
-        if (!user.getPassword().startsWith("$2a$10$")) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
         userDao.update(id, user);
     }
 

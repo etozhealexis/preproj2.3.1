@@ -30,7 +30,7 @@ public class AdminRestController {
     }
 
     @PostMapping("/edit/{id}")
-    public void saveUpdate(@RequestBody User user) {
+    public void saveUpdate(@RequestBody @Valid User user) {
         userService.update(user.getId(), user);
     }
 
