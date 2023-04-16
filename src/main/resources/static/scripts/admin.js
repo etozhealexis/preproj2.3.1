@@ -24,6 +24,13 @@ function createUser() {
     })
 }
 
+function refreshCreateUser() {
+    document.getElementById("creating-name").value = "";
+    document.getElementById("creating-age").value = "";
+    document.getElementById("creating-email").value = "";
+    document.getElementById("creating-password").value = "";
+}
+
 function refreshTable() {
     $("#users-table td").remove();
     $.ajax({
@@ -31,7 +38,8 @@ function refreshTable() {
         url: '/admin/users',
         contentType: 'application/json',
         success: function (response) {
-            drawTable(response)
+            drawTable(response);
+            refreshCreateUser();
         },
         error: function (error) {
             console.log(error);
@@ -105,25 +113,38 @@ function drawEditModal(data) {
         url: '/admin/edit/' + data.id.toString(),
         contentType: 'application/json',
         success: function (data) {
-            // let hasUser = false;
-            // let hasAdmin = false;
+            document.getElementById('edit-role-user').checked = false;
+            document.getElementById('edit-role-admin').checked = false;
+            data.roles.forEach(function (item) {
+                if ((item.role) === 'USER') {
+                    document.getElementById('edit-role-user').checked = true;
+                }
+                if ((item.role) === 'ADMIN') {
+                    document.getElementById('edit-role-admin').checked = true;
+                }
+            })
             document.getElementById('edit-name').value = data.name;
             document.getElementById('edit-age').value = data.age;
             document.getElementById('edit-email').value = data.email;
             document.getElementById('edit-password').value = data.password;
-            document.getElementById('edit-role-user').checked = data.roles[0].role.includes('USER') || data.roles[1].role.includes('USER');
-            document.getElementById('edit-role-admin').checked = data.roles[0].role.includes('ADMIN') || data.roles[1].role.includes('ADMIN');
             document.getElementById('edit-button').onclick = (function () {
-                // hasUser = document.getElementById('edit-role-user').checked === true;
-                // hasAdmin = document.getElementById('edit-role-admin').checked === true;
+                let roles = [];
+
+                if (document.getElementById('edit-role-user').checked === true) {
+                    roles.push({id: 1, name: "ROLE_USER", authority: "ROLE_USER"})
+                }
+
+                if (document.getElementById('edit-role-admin').checked === true) {
+                    roles.push({id: 2, name: "ROLE_ADMIN", authority: "ROLE_ADMIN"})
+                }
+
                 let user = {
                     id: data.id,
                     name: document.getElementById('edit-name').value,
                     age: document.getElementById('edit-age').value,
                     email: document.getElementById('edit-email').value,
                     password: document.getElementById('edit-password').value,
-                    // hasUser: hasUser,
-                    // hasAdmin: hasAdmin
+                    roles: roles
                 }
                 let userjson = JSON.stringify(user)
                 $.ajax({
@@ -148,12 +169,11 @@ function drawDeleteModal(data) {
     document.getElementById('delete-name').value = data.name;
     document.getElementById('delete-age').value = data.age;
     document.getElementById('delete-email').value = data.email;
-    document.getElementById('delete-role-user').checked = !!data.roles.includes('ROLE_USER');
-    document.getElementById('delete-role-admin').checked = !!data.roles.includes('ROLES_ADMIN');
+    document.getElementById('delete-password').value = data.password;
     document.getElementById('delete-button').onclick = (function () {
         $.ajax({
             method: 'GET',
-            url: "/admin/delete/" + data.id,
+            url: "/admin/delete/" + data.id.toString(),
             success: function () {
                 document.getElementById('close-delete').click()
                 refreshTable()

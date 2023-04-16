@@ -1,10 +1,8 @@
 package ru.etozhealexis.crudapplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.etozhealexis.crudapplication.model.User;
-import ru.etozhealexis.crudapplication.repository.RoleRepository;
 import ru.etozhealexis.crudapplication.service.UserService;
 
 import javax.validation.Valid;
@@ -15,9 +13,6 @@ import java.util.List;
 public class AdminRestController {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private RoleRepository roleRepository;
 
     @GetMapping("/users")
     public List<User> listUsers() {
